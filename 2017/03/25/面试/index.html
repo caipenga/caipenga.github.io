@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jQuery," />
+  <meta name="keywords" content="面试," />
 
 
 
@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="前端深似海">
+<meta name="description" content="面试总结1：有以下的两个函数，定义一个对象使其拥有这两个函数属性
+function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a();c.b=b();console.log(c);">
 <meta property="og:type" content="article">
-<meta property="og:title" content="page">
-<meta property="og:url" content="http://caipenga.com/2017/03/22/page/index.html">
+<meta property="og:title" content="面试">
+<meta property="og:url" content="http://caipenga.com/2017/03/25/面试/index.html">
 <meta property="og:site_name" content="为学">
-<meta property="og:description" content="前端深似海">
-<meta property="og:updated_time" content="2017-03-22T07:23:44.342Z">
+<meta property="og:description" content="面试总结1：有以下的两个函数，定义一个对象使其拥有这两个函数属性
+function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a();c.b=b();console.log(c);">
+<meta property="og:updated_time" content="2017-03-25T16:42:18.230Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="page">
-<meta name="twitter:description" content="前端深似海">
+<meta name="twitter:title" content="面试">
+<meta name="twitter:description" content="面试总结1：有以下的两个函数，定义一个对象使其拥有这两个函数属性
+function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a();c.b=b();console.log(c);">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://caipenga.com/2017/03/22/page/"/>
+  <link rel="canonical" href="http://caipenga.com/2017/03/25/面试/"/>
 
 
 
 
 
-  <title> page | 为学 </title>
+  <title> 面试 | 为学 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://caipenga.com/2017/03/22/page/">
+    <link itemprop="mainEntityOfPage" href="http://caipenga.com/2017/03/25/面试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="蔡鹏">
@@ -290,7 +293,7 @@
             
             
               
-                page
+                面试
               
             
           </h2>
@@ -305,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T14:21:32+08:00">
-                2017-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T23:07:22+08:00">
+                2017-03-25
               </time>
             
 
@@ -328,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -346,8 +349,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/22/page/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/page/" itemprop="commentCount"></span>
+                <a href="/2017/03/25/面试/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/25/面试/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,7 +376,32 @@
       
 
       
-        <p>前端深似海</p>
+        <p></p><h1>面试总结</h1><br>1：有以下的两个函数，定义一个对象使其拥有这两个函数属性<p></p>
+<p>function a(){<br>    return ‘a’;<br>}<br>function b(){<br>    return ‘b’;<br>}<br>var c={};<br>c.a=a();<br>c.b=b();<br>console.log(c);</p>
+<a id="more"></a>
+<p>2: 对象变量和堆内存<br>var x = 20;<br>    var a = {<br>        x : 15,<br>        fn : function(){<br>            var x = 30;<br>            return function(){<br>                return this.x;<br>            };<br>        }<br>    };<br>    console.log(a.fn());<br>    console.log((a.fn())());<br>    console.log(a.fn()());<br>    console.log(a.fn()() == (a.fn())());<br>    console.log(a.fn().call(this));<br>    console.log(a.fn().call(a));</p>
+<pre><code>先说一下输出的答案：
+</code></pre><p>1）、function(){return this.x;}<br>2)、20<br>3）、20<br>4）、true<br>5）、20<br>6)、15</p>
+<p>这道题中的this都是指向windows，所以this.x的值都为20，第1、2、3、4种情况都很好理解，到第五第六种考察了call这个函数，call的用途：<br>// 1. 替换函数运行环境中的this<br>// 2. 传递参数<br>// 3. 运行函数<br>所以第六种是把this指向了a对象，所以输出的是a.x就为15。</p>
+<p>3:数组去重<br>var arr = [‘a’,’g’,’q’,’d’,’a’,’e’,’q’];<br>    Array.prototype.unique = function(){<br>        for(var i = 0; i &lt; this.length; i++){<br>            for(var j = i+1; j &lt; this.length; j++){<br>                if(this[i] == this[j]){<br>                    this.splice(j,1);<br>                }<br>            }<br>        }<br>        return this;<br>    };<br>    console.log(arr.unique());</p>
+<p>4：编写一个函数fn(Number n),将数字转为大写输出，如输入123，输出一百二十三<br>function fn(n){<br>        if(!/^([1-9]\d*)/.test(n)){<br>            return ‘非法数据’;<br>        }<br>        var unit = ‘千百十亿千百十万千百十个’;<br>        if(n.length &gt; unit.length){<br>            return ‘数据过长’;<br>        }<br>        var newStr = ‘’;<br>        var nlength = n.length;<br>        unit = unit.substr(unit.length - nlength);<br>        for(var i = 0; i &lt; nlength; i++){<br>            newStr += ‘零一二三四五六七八九’.charAt(n[i]) + unit.charAt(i);<br>        }<br>        newStr = newStr.substr(0,newStr.length-1);<br>        newStr = newStr.replace(/零(千|百|十)/g,’零’).replace(/(零)+/g,’零’).replace(/零(亿|万)/g,’$1’);<br>        return newStr;<br>    }<br>    console.log(fn(‘205402002103’));</p>
+<p> 5:排列组合问题（考察递归和排列组合算法）<br> var str = [1,2,3];<br>    var count = 0;<br>    function arrange(s){<br>        for(var i = 0,length = str.length;i&lt; length;i++){<br>            if(s.length == length - 1) {<br>                if(s.indexOf(str[i]) &lt; 0) {<br>                    count++;<br>                    console.log(“组合”+count+”=”+s + str[i]);<br>                }<br>                continue;<br>            }<br>            if(s.indexOf(str[i]) &lt; 0) {<br>                arrange(s+str[i]);<br>            }<br>        }<br>    }<br>    arrange(‘’);<br> 6:垂直居中常用方法：<br> <!-- html结构 --></p>
+<body><br><div class="wrap"><br>    <div class="box"></div><br></div><br></body>
+
+<p>/<em> css样式 </em>/</p>
+<p>/<em> (1) 模仿单行文字居中的方式 </em>/<br>.wrap {<br>width: 200px;<br>height: 80px;<br>line-height: 80px;<br>}</p>
+<p>.box {<br>display: inline-block;<br>vertical-align:middle;<br>}</p>
+<p>/<em> (2) 已知宽高，通过position:absolute; </em>/<br>.wrap {<br>width: 200px;<br>height: 200px;<br>position: relative;<br>}</p>
+<p>.box {<br>width: 100px;<br>height: 80px;<br>position: absolute;<br>left: 50%;<br>top: 50%;<br>margin: -50px 0 0 -40px;<br>}</p>
+<p>/<em> (3) 未知宽高，通过css3属性 transfrom </em>/<br>.wrap {<br>width: 200px;<br>height: 200px;<br>position: relative;<br>}</p>
+<p>.box {<br>position: absolute;<br>left: 50%;<br>top: 50%;<br>-webkit-transform: translateX(-50%) translateY(-50%);<br>transform: translateX(-50%) translateY(-50%);<br>}</p>
+<p>/<em> (4) 通过flex布局 </em>/<br><!-- html结构 --></p>
+<body><br><div class="wrap flexbox flexbox-center flexbox-middle"><br>    <div class="box"></div><br></div><br></body>
+
+<p>/<em> css样式 </em>/</p>
+<p>.flexbox {<br>display: -webkit-box;<br>display: -moz-box;<br>display: -ms-flexbox;<br>display: -webkit-flex;<br>display: flex;<br>}</p>
+<p>/<em> 水平居中 </em>/<br>.flexbox-center {<br>-webkit-box-pack: center;<br>-moz-box-pack: center;<br>-ms-flex-pack: center;<br>-webkit-justify-content: center;<br>justify-content: center;<br>}</p>
+<p>/<em> 垂直居中 </em>/<br>.flexbox-middle {<br>-webkit-box-align: center;<br>-moz-box-align: center;<br>-ms-flex-align: center;<br>-webkit-align-items: center;<br>align-items: center;<br>}</p>
 
       
     </div>
@@ -403,7 +431,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+            <a href="/tags/面试/" rel="tag"># 面试</a>
           
         </div>
       
@@ -416,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/21/demo2/" rel="next" title="测试二">
-                <i class="fa fa-chevron-left"></i> 测试二
+              <a href="/2017/03/23/跨域/" rel="next" title="跨域">
+                <i class="fa fa-chevron-left"></i> 跨域
               </a>
             
           </div>
@@ -426,8 +454,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/22/dome4/" rel="prev" title="标签测试文章">
-                标签测试文章 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/26/Vue-js/" rel="prev" title="Vue.js">
+                Vue.js <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,8 +482,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/22/page/"
-           data-title="page" data-url="http://caipenga.com/2017/03/22/page/">
+      <div class="ds-thread" data-thread-key="2017/03/25/面试/"
+           data-title="面试" data-url="http://caipenga.com/2017/03/25/面试/">
       </div>
     
   </div>
@@ -479,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user.jpeg"
@@ -553,6 +590,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">面试总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

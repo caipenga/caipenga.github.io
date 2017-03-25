@@ -97,7 +97,7 @@ XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持�
 <meta property="og:description" content="1:ajax原理和XMLHTTPRequest对象
 AJAX的原理简单来说就是通过XMLHttpRequest对象向服务器发异步请求，从服务器获取数据，然后用JavaScript来操作DOM从而更新页面；
 XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持异步请求的技术，简单来说，也就是JavaScript可以及时向服务器提出请求和处理响应，而不阻塞用户，打到无刷新">
-<meta property="og:updated_time" content="2017-03-22T22:39:43.737Z">
+<meta property="og:updated_time" content="2017-03-24T05:56:39.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax">
 <meta name="twitter:description" content="1:ajax原理和XMLHTTPRequest对象
@@ -382,11 +382,12 @@ XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持�
         <p>1:ajax原理和XMLHTTPRequest对象</p>
 <p>AJAX的原理简单来说就是通过XMLHttpRequest对象向服务器发异步请求，从服务器获取数据，然后用JavaScript来操作DOM从而更新页面；</p>
 <p>XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持异步请求的技术，简单来说，也就是JavaScript可以及时向服务器提出请求和处理响应，而不阻塞用户，打到无刷新的效果！</p>
+<a id="more"></a>
 <p>XMLHttpRequest 原理属性:</p>
 <p>onreadystatechange 每次状态改变所触发事件的事件处理程序；存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
 <p>readyState         对象状态码</p>
 <p>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。<br>0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）<br>　　　　1 (初始化) 对象已建立，尚未调用send方法<br>　　　　2 (发送数据) send方法已调用，但是当前的状态及http头未知<br>　　　　3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，<br>　　　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据</p>
-<p>responseText       从服务器进程返回数据的字符串形式；<br>responseXML        从服务器进程返回的DOM兼容的文档数据对象（XML形式）；<br>status             从服务器返回的数字代码，状态码，比如常见的404（未找到）200（已就绪）<br>status Text        伴随状态码的字符串信息；<br><a id="more"></a></p>
+<p>responseText       从服务器进程返回数据的字符串形式；<br>responseXML        从服务器进程返回的DOM兼容的文档数据对象（XML形式）；<br>status             从服务器返回的数字代码，状态码，比如常见的404（未找到）200（已就绪）<br>status Text        伴随状态码的字符串信息；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function CreateXmlHttp() &#123;</div><div class="line"></div><div class="line">    //非IE浏览器创建XmlHttpRequest对象</div><div class="line">    if (window.XmlHttpRequest) &#123;</div><div class="line">        xmlhttp = new XmlHttpRequest();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //IE浏览器创建XmlHttpRequest对象</div><div class="line">    if (window.ActiveXObject) &#123;</div><div class="line">        try &#123;</div><div class="line">            xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</div><div class="line">        &#125;</div><div class="line">        catch (e) &#123;</div><div class="line">            try &#123;</div><div class="line">                xmlhttp = new ActiveXObject(&quot;msxml2.XMLHTTP&quot;);</div><div class="line">            &#125;</div><div class="line">            catch (ex) &#123; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function Ustbwuyi() &#123;</div><div class="line"></div><div class="line">    var data = document.getElementById(&quot;username&quot;).value;</div><div class="line">    CreateXmlHttp();</div><div class="line">    if (!xmlhttp) &#123;</div><div class="line">        alert(&quot;创建xmlhttp对象异常！&quot;);</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    xmlhttp.open(&quot;POST&quot;, url, false);</div><div class="line"></div><div class="line">    xmlhttp.onreadystatechange = function () &#123;</div><div class="line">        if (xmlhttp.readyState == 4) &#123;</div><div class="line">            document.getElementById(&quot;user1&quot;).innerHTML = &quot;数据正在加载...&quot;;</div><div class="line">            if (xmlhttp.status == 200) &#123;</div><div class="line">                document.write(xmlhttp.responseText);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    xmlhttp.send();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如上所示，函数首先检查XMLHttpRequest的整体状态并且保证它已经完成（readyStatus=4），即数据已经发送完毕。然后根据服务器的设定询问请求状态，如果一切已经就绪（status=200），那么就执行下面需要的操作。<br>对于XmlHttpRequest的两个方法，open和send，其中open方法指定了：<br>a、向服务器提交数据的类型，即post还是get。<br>b、请求的url地址和传递的参数。<br>      c、传输方式，false为同步，true为异步。默认为true。如果是异步通信方式(true)，客户机就不等待服务器的响应；如果是同步方式(false)，客户机就要等到服务器返回消息后才去执行其他操作。我们需要根据实际需要来指定同步方式，在某些页面中，可能会发出多个请求，甚至是有组织有计划有队形大规模的高强度的request，而后一个是会覆盖前一个的，这个时候当然要指定同步方式。<br>    Send方法用来发送请求。</p>
 <p>　　知道了XMLHttpRequest的工作流程，我们可以看出，XMLHttpRequest是完全用来向服务器发出一个请求的，它的作用也局限于此，但它的作用是整个ajax实现的关键，因为ajax无非是两个过程，发出请求和响应请求。并且它完全是一种客户端的技术。而XMLHttpRequest正是处理了服务器端和客户端通信的问题所以才会如此的重要。<br>　　现在，我们对ajax的原理大概可以有一个了解了。我们可以把服务器端看成一个数据接口，它返回的是一个纯文本流，当然，这个文本流可以是XML格式，可以是Html，可以是Javascript代码，也可以只是一个字符串。这时候，XMLHttpRequest向服务器端请求这个页面，服务器端将文本的结果写入页面，这和普通的web开发流程是一样的，不同的是，客户端在异步获取这个结果后，不是直接显示在页面，而是先由javascript来处理，然后再显示在页面。至于现在流行的很多ajax控件，比如magicajax等，可以返回DataSet等其它数据类型，只是将这个过程封装了的结果，本质上他们并没有什么太大的区别。</p>
@@ -515,7 +516,7 @@ XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -526,7 +527,7 @@ XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持�
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -537,7 +538,7 @@ XMLHttpRequest是AJAX的核心机制，在IE5中首次引入的,是一种支持�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
