@@ -95,7 +95,7 @@ function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a
 <meta property="og:site_name" content="为学">
 <meta property="og:description" content="面试总结1：有以下的两个函数，定义一个对象使其拥有这两个函数属性
 function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a();c.b=b();console.log(c);">
-<meta property="og:updated_time" content="2017-03-25T16:42:18.230Z">
+<meta property="og:updated_time" content="2017-03-26T10:32:11.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
 <meta name="twitter:description" content="面试总结1：有以下的两个函数，定义一个对象使其拥有这两个函数属性
@@ -383,7 +383,11 @@ function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a
 <pre><code>先说一下输出的答案：
 </code></pre><p>1）、function(){return this.x;}<br>2)、20<br>3）、20<br>4）、true<br>5）、20<br>6)、15</p>
 <p>这道题中的this都是指向windows，所以this.x的值都为20，第1、2、3、4种情况都很好理解，到第五第六种考察了call这个函数，call的用途：<br>// 1. 替换函数运行环境中的this<br>// 2. 传递参数<br>// 3. 运行函数<br>所以第六种是把this指向了a对象，所以输出的是a.x就为15。</p>
-<p>3:数组去重<br>var arr = [‘a’,’g’,’q’,’d’,’a’,’e’,’q’];<br>    Array.prototype.unique = function(){<br>        for(var i = 0; i &lt; this.length; i++){<br>            for(var j = i+1; j &lt; this.length; j++){<br>                if(this[i] == this[j]){<br>                    this.splice(j,1);<br>                }<br>            }<br>        }<br>        return this;<br>    };<br>    console.log(arr.unique());</p>
+<p>3:数组去重<br>第一种：双重循环<br>var arr = [‘a’,’g’,’q’,’d’,’a’,’e’,’q’];<br>    Array.prototype.unique = function(){<br>        for(var i = 0; i &lt; this.length; i++){<br>            for(var j = i+1; j &lt; this.length; j++){<br>                if(this[i] == this[j]){<br>                    this.splice(j,1);<br>                }<br>            }<br>        }<br>        return this;<br>    };<br>    console.log(arr.unique());</p>
+<p>第二种：新数组<br>var ary=[1,2,3,3,2,3,4,5];<br>var ary1=[];<br>for(var i=0;i&lt;ary.length;i++){<br>    if(ary1.indexOf(ary[i])==-1){<br>        ary1.push(ary[i]);<br>    }<br>}<br>alert(ary1);</p>
+<p>第三种：可以记录次数的对象去重<br>var ary=[1,2,3,3,2,3,4,5];<br>        var obj={};<br>        for(var i=0;i&lt;ary.length;i++){<br>            var cur=ary[i];<br>            if(obj[cur]){<br>                obj[cur]++;<br>            }else{<br>                obj[cur]=1;<br>            }<br>        }<br>        var ary=[];<br>        for(var attr in obj){<br>            ary.push(attr);<br>        }</p>
+<pre><code>alert(ary);
+</code></pre><p>第四种：sort 思想<br>var ary=[1,2,3,3,2,3,4,5];<br>        ary.sort(function(a,b){return a-b;});<br>        for(var i=0;i&lt;ary.length;i++){<br>            if(ary[i]===ary[i+1]){<br>                ary.splice(i,1);<br>                i–;<br>            }<br>        }<br>        alert(ary);</p>
 <p>4：编写一个函数fn(Number n),将数字转为大写输出，如输入123，输出一百二十三<br>function fn(n){<br>        if(!/^([1-9]\d*)/.test(n)){<br>            return ‘非法数据’;<br>        }<br>        var unit = ‘千百十亿千百十万千百十个’;<br>        if(n.length &gt; unit.length){<br>            return ‘数据过长’;<br>        }<br>        var newStr = ‘’;<br>        var nlength = n.length;<br>        unit = unit.substr(unit.length - nlength);<br>        for(var i = 0; i &lt; nlength; i++){<br>            newStr += ‘零一二三四五六七八九’.charAt(n[i]) + unit.charAt(i);<br>        }<br>        newStr = newStr.substr(0,newStr.length-1);<br>        newStr = newStr.replace(/零(千|百|十)/g,’零’).replace(/(零)+/g,’零’).replace(/零(亿|万)/g,’$1’);<br>        return newStr;<br>    }<br>    console.log(fn(‘205402002103’));</p>
 <p> 5:排列组合问题（考察递归和排列组合算法）<br> var str = [1,2,3];<br>    var count = 0;<br>    function arrange(s){<br>        for(var i = 0,length = str.length;i&lt; length;i++){<br>            if(s.length == length - 1) {<br>                if(s.indexOf(str[i]) &lt; 0) {<br>                    count++;<br>                    console.log(“组合”+count+”=”+s + str[i]);<br>                }<br>                continue;<br>            }<br>            if(s.indexOf(str[i]) &lt; 0) {<br>                arrange(s+str[i]);<br>            }<br>        }<br>    }<br>    arrange(‘’);<br> 6:垂直居中常用方法：<br> <!-- html结构 --></p>
 <body><br><div class="wrap"><br>    <div class="box"></div><br></div><br></body>
@@ -532,7 +536,7 @@ function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -543,7 +547,7 @@ function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -554,7 +558,7 @@ function a(){    return ‘a’;}function b(){    return ‘b’;}var c={};c.a=a
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
