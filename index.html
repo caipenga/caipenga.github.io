@@ -518,9 +518,8 @@
 
       
         
-          
-            <p></p><h1>webpack2.0笔记</h1><p></p>
-<p></p><h3>全局安装</h3><p></p>
+          <p><h1>webpack2.0笔记</h1></p>
+<p><h3>全局安装</h3></p>
 <pre><code># npm install webpack -g
 项目安装：
 # 进入项目目录 //cd   mkdir  //新建文件
@@ -536,74 +535,14 @@
 <p>5: 图片<br>     cnpm install file-loader –save-dev</p>
 <p>6:  URL  (limit 转码base64)<br>     cnpm install url-loader –save-dev</p>
 <p>6:  图片压缩<br>     cnpm install images-webpack-loader –save-dev</p>
-<p> 这是一个坑哦（实测）<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a><br>cnpm install node-sass  </p>
-<p>output 出口文件中</p>
-<p>filename 三个属性:<br>[name]   打包的名字<br>[hash]   打包的hash值  [hash:5]<br>[chunhash]  每一次改变后的hash值 MD5值（每一个文件的唯一性/静态资源版本号）</p>
-<p>htmlWebpackPlugin: 模板引擎 Json</p>
-<p>A:options 参数</p>
-<p>B:files 参数</p>
-<p>title: 用来生成页面的 title 元素<br>filename: 输出的 HTML 文件名，默认是 index.html, 也可以直接配置带有子目录。<br>template: 模板文件路径，支持加载器，比如 html!./index.html<br>inject: true | ‘head’ | ‘body’ | false  ,注入所有的资源到特定的 template 或者 templateContent 中，如果设置为 true 或者 body，所有的 javascript 资源将被放置到 body 元素的底部，’head’ 将放置到 head 元素中。<br>favicon: 添加特定的 favicon 路径到输出的 HTML 文件中。<br>minify: {} | false , 传递 html-minifier 选项给 minify 输出<br>hash: true | false, 如果为 true, 将添加一个唯一的 webpack 编译 hash 到所有包含的脚本和 CSS 文件，对于解除 cache 很有用。<br>cache: true | false，如果为 true, 这是默认值，仅仅在文件修改之后才会发布文件。<br>showErrors: true | false, 如果为 true, 这是默认值，错误信息会写入到 HTML 页面中<br>chunks: 允许只添加某些块 (比如，仅仅 unit test 块)<br>chunksSortMode: 允许控制块在添加到页面之前的排序方式，支持的值：’none’ | ‘default’ | {function}-default:’auto’<br>excludeChunks: 允许跳过某些块，(比如，跳过单元测试的块) </p>
-<p>webpack流处理  静态资源<br><a href="https://github.com/jantimon/html-webpack-plugin/blob/master/examples/inline/template.jade" target="_blank" rel="external">https://github.com/jantimon/html-webpack-plugin/blob/master/examples/inline/template.jade</a></p>
-<p>webpack.config.js</p>
-<p>‘use strict’;<br>var path = require(‘path’);<br>// var webpack = require(‘webpack’);<br>var htmlplugin= require(‘html-webpack-plugin’)<br>//定义了一些文件夹的路径<br>var ROOT_PATH = path.resolve(__dirname);<br>var APP_PATH = path.resolve(ROOT_PATH, ‘src’);<br>var BUILD_PATH = path.resolve(ROOT_PATH, ‘dist/APP’);<br>var BrowserSyncPlugin = require(‘browser-sync-webpack-plugin’);<br>module.exports={<br>       entry: ‘./src/APP.JS’,<br>        output: {<br>              path:BUILD_PATH,       //出口文件<br>              // filename: ‘js/[name]-[hash:5].js’                 //打包后的文件名称<br>              filename: ‘js/[name].js’,                //打包后的文件名称<br>        },<br>        module:{<br>            loaders:[<br>                {<br>                  test :/.html$/,<br>                  loader:’html-loader’</p>
-<pre><code>        },
-      {
-        test: /\.jsx?$/,
-        loader: &apos;babel-loader&apos;,
-        include: APP_PATH,  //指定包含的范围
-        // exclude: &apos;./node_modules/&apos;,  //不需要处理的文件
-        query: {
-          presets: [&apos;es2015&apos;]
-        }
-      },
-      {
-        test: /\.css$/,
-        loaders: [
-          &apos;style-loader&apos;,
-          &apos;css-loader?importLoaders=1&apos;,
-          &apos;postcss-loader&apos;
-        ]
-      },
-        {  
-        test: /\.scss$/,                  
-        // 将样式抽取出来为独立的文件
-       //  loaders: [
-       //  &apos;style-loader&apos;,
-       //  &apos;css-loader!postcss-loader&apos;,
-       //  &apos;sass-loader&apos;
-       // ]
-       loader:&apos;style-loader!css-loader!sass-loader&apos;
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/i,
-        loader: [
-            &apos;url-loader?limit=4000&amp;name=[name]-[hash:5].[ext]&apos;,
-            // &apos;image-webpack-loader?bypassOnDebug&amp;optimizationLevel=7&amp;interlaced=false&apos;
-        ]
-    } 
-    ]
-},
-plugins: [
- new htmlplugin({
-     // filename: &apos;index-[hash].html&apos;,   //指定生成的名称
-     filename: &apos;app.html&apos;,   //指定生成的名称
-     template: &apos;about.html&apos;,    //模板
-     inject: &apos;body&apos;,           //放入文件的位置
-     title: &apos;第一个标题呢&apos;
-     // chunks: [&apos;a&apos;]
- }),
- // new BrowserSyncPlugin({
- //      host:&apos;localhost&apos;, // 实时监听，webpack -w 可以实时更新硬盘中的文件js，css
- //      port:8000,
- //      file:&apos;&apos;,
- //      server:{
- //        baseDir:&apos;./APP&apos; // localhost地址对应的文件目录
- //      }
- //    })
-]
-</code></pre><p> }</p>
-
-          
+<p> 这是一个坑哦（实测）<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org">https://registry.npm.taobao.org</a><br>cnpm install node-sass  </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/03/webpack2-0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
