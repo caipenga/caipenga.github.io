@@ -99,8 +99,7 @@ Examples     *{margin:0px;padding:0px;}    li{list-style: none;}    a{text-decor
 <meta property="og:image" content="http://caipenga.com/#">
 <meta property="og:image" content="http://caipenga.com/#">
 <meta property="og:image" content="http://caipenga.com/#">
-<meta property="og:image" content="http://caipenga.com/#">
-<meta property="og:updated_time" content="2017-04-10T14:23:16.634Z">
+<meta property="og:updated_time" content="2017-04-10T14:35:19.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="轮播">
 <meta name="twitter:description" content="原生JS轮播&amp;lt;!DOCTYPE html&amp;gt;
@@ -383,34 +382,33 @@ Examples     *{margin:0px;padding:0px;}    li{list-style: none;}    a{text-decor
 
       
         <p></p><h1>原生JS轮播</h1><br>&lt;!DOCTYPE html&gt;<p></p>
-<html><br><head><br><meta charset="utf-8"><br><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><br><title>Examples</title><br><meta name="description" content=""><br><meta name="keywords" content=""><br><link href="" rel="stylesheet"><br> <style><br>    *{margin:0px;padding:0px;}<br>    li{list-style: none;}<br>    a{text-decoration: none;color:white;}<br>     #banner{<br>            width:600px;<br>            margin:50px auto;<br>            position: relative;<br>}<br>   #pic{<br>           width:600px;<br>        height:400px;<br>        border:1px solid skyblue;<br>        position: relative;<br>   }<br>   #pic img{<br>               display: none;<br>               width:600px;<br>               height:400px;<br>            position: absolute;<br>            top:0px;<br>            left:0px;<br>   }<br>   #pic .on{<br>              display: block;<br>   }<br>   #btn .item{<br>                 display: block;<br>                 width:40px;<br>                 height:40px;<br>                 background: rgba(0,0,0,.2);<br>                 position: absolute;<br>                 top:50%;<br>                 margin-top: -20px;<br>                 left:0px;<br>                 font-size:20px;<br>                 font-weight: bold;<br>                 color:white;<br>                 line-height: 40px;<br>                 text-align:center;<br>                 cursor: pointer;<br>                 transition:all 0.3s ease-in;<br>   }<br>   #btn #next{<br>          right:0px;<br>          left:auto;<br>   }<br>    #prve:hover{<br>         width:60px;<br>         height:45px;<br>         line-height: 45px;<br>      background: rgba(0,0,0,.5);<br>      font-size: 28px;<br>      margin-top:-22.5px;<br>   }<br>    #next:hover{<br>         width:60px;<br>         height:45px;<br>         line-height: 45px;<br>      background: rgba(0,0,0,.5);<br>      font-size: 28px;<br>      margin-top:-22.5px;<br>   }<br>   #text{<br>       width:100%;<br>       position: absolute;<br>       top:0px;<br>       left:0px;<br>       background: rgba(0,0,0,.5);<br>       height: 35px;<br>       line-height: 35px;<br>       text-align: center;<br>       color: white;<br>   }<br>   #tab{<br>       width:72px;<br>       position: absolute;<br>       bottom: 10px;<br>       left:50%;<br>       margin-left:-30px;<br>   }<br>   #tab ul li{<br>       margin:0px 3px;<br>       height: 12px;<br>       width:12px;<br>       border-radius: 50%;<br>       background:white;<br>       float:left;<br>    cursor: pointer;<br>   }<br>   #tab .on{<br>       background: #f60;<br>   }<br>   #pic img:nth-child(1){<br>       background-color: #D92323<br>   }<br>      #pic img:nth-child(2){<br>       background-color: #53D52E<br>   }<br>      #pic img:nth-child(3){<br>       background-color: #EC601D<br>   }<br>      #pic img:nth-child(4){<br>       background-color: #420DFA<br>   }<br>         #pic img:nth-child(5){<br>       background-color: #0B0000<br>   }<br> </style><br></head><br><body><br>    <div id="banner"><br>        <div id="pic"><br>            <img src="#" alt="" class="on"><br>            <img src="#" alt=""><br>            <img src="#" alt=""><br>            <img src="#" alt=""><br>            <img src="#" alt=""><br>        </div><br>        <div id="btn"><br>            <span id="prve" class="item">&lt;</span><br>            <span id="next" class="item">&gt;</span><br>        </div><br>        <p id="text"><span id="txt">1</span>/5</p><br>        <div id="tab"><br>            <ul><br>                <li class="on"></li><br>                <li></li><br>                <li></li><br>                <li></li><br>                <li></li><br>            </ul><br>        </div><br>    </div><br>   <script><br>       var oimg = document.querySelectorAll(‘#pic img’);<br>    var oli =  document.querySelectorAll(‘#banner #tab ul li’);<br>       var prve = document.getElementById(‘prve’);<br>    var next = document.getElementById(‘next’);<br>    var banner = document.getElementById(‘banner’);<br>    var txt = document.getElementById(‘txt’);<br>    var length = oimg.length;<br>    var index = 0;<br>    var timer = null;<br>    for (var i = 0; i &lt; length; i++) {<br>         oli[i].gou = i<br>         oli[i].onclick = function(){<br>             for (var j = 0; j &lt; length; j++) {<br>                  oimg[j].className = ‘’;<br>                  oli[j].className = ‘’;<br>                }<br>                this.className = ‘on’;<br>                oimg[this.gou].className = ‘on’;<br>                txt.innerHTML = this.gou+1;<br>                index = this.gou;<br>         };<br>    }<br>    next.onclick = function () {<br>         index ++;<br>         // index %=length;<br>         index =index%length;<br>         for (var i = 0; i &lt; length; i++) {<br>              oimg[i].className = ‘’;<br>              oli[i].className = ‘’;<br>         }<br>         oimg[index].className = ‘on’;<br>         oli[index].className = ‘on’;<br>         txt.innerHTML =index+1;<br>    };<br>    prve.onclick = function(){<br>         index –;<br>         if(index<0);
-             index=length-1;
+<html><br><head><br><meta charset="utf-8"><br><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><br><title>Examples</title><br><meta name="description" content=""><br><meta name="keywords" content=""><br><link href="" rel="stylesheet"><br> <style><br>    *{margin:0px;padding:0px;}<br>    li{list-style: none;}<br>    a{text-decoration: none;color:white;}<br>     #banner{<br>            width:600px;<br>            margin:50px auto;<br>            position: relative;<br>}<br>   #pic{<br>           width:600px;<br>        height:400px;<br>        border:1px solid skyblue;<br>        position: relative;<br>   }<br>   #pic img{<br>               display: none;<br>               width:600px;<br>               height:400px;<br>            position: absolute;<br>            top:0px;<br>            left:0px;<br>   }<br>   #pic .on{<br>              display: block;<br>   }<br>   #btn .item{<br>                 display: block;<br>                 width:40px;<br>                 height:40px;<br>                 background: rgba(0,0,0,.2);<br>                 position: absolute;<br>                 top:50%;<br>                 margin-top: -20px;<br>                 left:0px;<br>                 font-size:20px;<br>                 font-weight: bold;<br>                 color:white;<br>                 line-height: 40px;<br>                 text-align:center;<br>                 cursor: pointer;<br>                 transition:all 0.3s ease-in;<br>   }<br>   #btn #next{<br>          right:0px;<br>          left:auto;<br>   }<br>    #prve:hover{<br>         width:60px;<br>         height:45px;<br>         line-height: 45px;<br>      background: rgba(0,0,0,.5);<br>      font-size: 28px;<br>      margin-top:-22.5px;<br>   }<br>    #next:hover{<br>         width:60px;<br>         height:45px;<br>         line-height: 45px;<br>      background: rgba(0,0,0,.5);<br>      font-size: 28px;<br>      margin-top:-22.5px;<br>   }<br>   #text{<br>       width:100%;<br>       position: absolute;<br>       top:0px;<br>       left:0px;<br>       background: rgba(0,0,0,.5);<br>       height: 35px;<br>       line-height: 35px;<br>       text-align: center;<br>       color: white;<br>   }<br>   #tab{<br>       width:72px;<br>       position: absolute;<br>       bottom: 10px;<br>       left:50%;<br>       margin-left:-30px;<br>   }<br>   #tab ul li{<br>       margin:0px 3px;<br>       height: 12px;<br>       width:12px;<br>       border-radius: 50%;<br>       background:white;<br>       float:left;<br>    cursor: pointer;<br>   }<br>   #tab .on{<br>       background: #f60;<br>   }<br>   #pic img:nth-child(1){<br>       background-color: #D92323<br>   }<br>      #pic img:nth-child(2){<br>       background-color: #53D52E<br>   }<br>      #pic img:nth-child(3){<br>       background-color: #EC601D<br>   }<br>      #pic img:nth-child(4){<br>       background-color: #420DFA<br>   }<br>         #pic img:nth-child(5){<br>       background-color: #0B0000<br>   }<br> </style><br></head><br><body><br>    <div id="banner"><br>      <div id="pic"><br>        <img src="#" alt="" class="on"><br>        <img src="#" alt=""><br>        <img src="#" alt=""><br>        <img src="#" alt=""><br>      </div><br>      <div id="btn"><br>        <span id="prve" class="item">&lt;</span><br>        <span id="next" class="item">&gt;</span><br>      </div><br>      <p id="text"><span id="txt">1</span>/4</p><br>      <div id="tab"><br>        <ul><br>          <li class="on"></li><br>          <li></li><br>          <li></li><br>          <li></li><br>        </ul><br>      </div><br>    </div><br>   <script><br>    var oimg = document.querySelectorAll(‘#pic img’);<br>    var oli =  document.querySelectorAll(‘#banner #tab li’);<br>    var prve = document.getElementById(‘prve’);<br>  var next = document.getElementById(‘next’);<br>  var banner = document.getElementById(‘banner’);<br>  var txt = document.getElementById(‘txt’);<br>  var length = oimg.length;<br>    var index = 0;<br>    var timer = null;<br>  for (var i = 0; i &lt; length; i++) {<br>     oli[i].goudan = i<br>       oli[i].onclick = function(){<br>             for (var j = 0; j &lt; length; j++) {<br>                  oimg[j].className = ‘’;<br>                  oli[j].className = ‘’;<br>                }<br>                this.className = ‘on’;<br>                oimg[this.goudan].className = ‘on’;<br>                txt.innerHTML = this.goudan+1;<br>                index = this.goudan;<br>       };<br>  }<br>  next.onclick = function () {<br>     index ++;<br>     index %=length;<br>     for (var i = 0; i &lt; length; i++) {<br>       oimg[i].className = ‘’;<br>       oli[i].className = ‘’;<br>     }<br>       oimg[index].className = ‘on’;<br>       oli[index].className = ‘on’;<br>       txt.innerHTML =index+1;<br>  };<br>  prve.onclick = function(){<br>         index –;<br>         if(index<0)index=length-1;
          for(var i = 0;i < length; i++){
-              oimg[i].className = '';
-              oli[i].className ='';
+           oimg[i].className = '';
+           oli[i].className ='';
          }
           oimg[index].className = 'on';
           oli[index].className = 'on';
           txt.innerHTML = index+1;
-    }
-     banner.onmouseover = function(){
-         clearInterval(timer);
+  }
+   banner.onmouseover = function(){
+    clearInterval(timer);
+   }
+   banner.onmouseout = function(){
+        timer = setInterval(auto,1500);
+   }
+      timer = setInterval(auto,1500);
+  function auto(){
+     index ++;
+     index %=length;
+     for (var i = 0; i < length; i++) {
+       oimg[i].className = '';
+       oli[i].className = '';
      }
-     banner.onmouseout = function(){
-        timer = setInterval(auto,1000);
-     }
-      timer = setInterval(auto,1000);
-    function auto(){
-         index ++;
-         index =index%length;
-         for (var i = 0; i < length; i++) {
-              oimg[i].className = '';
-              oli[i].className = '';
-         }
-         oimg[index].className = 'on';
-         oli[index].className = 'on';
-         txt.innerHTML = index+1;
-    }
+       oimg[index].className = 'on';
+       oli[index].className = 'on';
+       txt.innerHTML = index+1;
+  }
    </script><br></body><br></html>
       
     </div>
