@@ -91,8 +91,7 @@
 
 一：渲染引擎  //只是HTML结构的渲染流程1、解析HTML，构建DOM树（构建DOM节点）；
 2、构建渲染树（解析样式信息，包括外部的css文件、style标签中的样式）。渲染树由一些包含有各种属性的矩形组成，他们将会按照正确的顺序显  示到屏幕上；
-3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；
-4、绘制渲染树（绘制DOM节点，即遍历">
+3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；4、绘制渲染树（绘制DOM节点，即遍历渲">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器渲染">
 <meta property="og:url" content="http://caipenga.com/2017/04/12/浏览器渲染/index.html">
@@ -101,17 +100,17 @@
 
 一：渲染引擎  //只是HTML结构的渲染流程1、解析HTML，构建DOM树（构建DOM节点）；
 2、构建渲染树（解析样式信息，包括外部的css文件、style标签中的样式）。渲染树由一些包含有各种属性的矩形组成，他们将会按照正确的顺序显  示到屏幕上；
-3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；
-4、绘制渲染树（绘制DOM节点，即遍历">
-<meta property="og:updated_time" content="2017-04-12T12:48:13.769Z">
+3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；4、绘制渲染树（绘制DOM节点，即遍历渲">
+<meta property="og:image" content="http://caipenga.com/images/6.png">
+<meta property="og:updated_time" content="2017-04-12T13:17:51.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器渲染">
 <meta name="twitter:description" content="DOMready
 
 一：渲染引擎  //只是HTML结构的渲染流程1、解析HTML，构建DOM树（构建DOM节点）；
 2、构建渲染树（解析样式信息，包括外部的css文件、style标签中的样式）。渲染树由一些包含有各种属性的矩形组成，他们将会按照正确的顺序显  示到屏幕上；
-3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；
-4、绘制渲染树（绘制DOM节点，即遍历">
+3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；4、绘制渲染树（绘制DOM节点，即遍历渲">
+<meta name="twitter:image" content="http://caipenga.com/images/6.png">
 
 
 
@@ -392,8 +391,14 @@
 
 <p>一：渲染引擎<br>  //只是HTML结构的渲染流程<br>1、解析HTML，构建DOM树（构建DOM节点）；</p>
 <p>2、构建渲染树（解析样式信息，包括外部的css文件、style标签中的样式）。渲染树由一些包含有各种属性的矩形组成，他们将会按照正确的顺序显  示到屏幕上；</p>
-<p>3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；</p>
-<p>4、绘制渲染树（绘制DOM节点，即遍历渲染树），使用UI后端层来绘制每个节点<br><a id="more"></a></p>
+<p>3、布局渲染树（布局DOM节点），执行布局的过程，将确定每个节点在屏幕上的确切坐标；<br>4、绘制渲染树（绘制DOM节点，即遍历渲染树），使用UI后端层来绘制每个节点<br><a id="more"></a></p>
+<h2>webkit主要渲染流程</h2><br><img src="/images/6.png" class="full-image"><br><br>1：window.onload事件：浏览器绘制完dom节点，在加载页面上的所有资源以后才执行我们自己定义的代码。也就是说在文档解析渲染、资源价在完成之前不让js脚本执行，但当资源过多是便出现短板，并不实用。<br>2：$(document).ready(function(){}) Jquery的domready方法<br><br><h2>DOMready实现策略</h2>
+
+<p>在页面的DOM树创建完成后（HTML解析第一步完成）即触发，而无需等待其他资源的加载<br>实现策略：<br>1、支持DOMContentLoaded时间的，就使用DOMContentLoaded事件。<br>2、不支持的（低版本的），原理就是利用IE中的doucument.doucumentElement.doScroll(‘left’)来判断DOM树是否创建完毕。</p>
+<p></p><h2>DOMready的实现</h2><br>//jQuery思路的DOMReady事件<p></p>
+<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">function myReady(fn) &#123;</div><div class="line">  // 对于现代浏览器，对于DOMContentLoaded事件的处理采用标准的事件绑定方式</div><div class="line">  if (document.addEventListener) &#123;</div><div class="line">    document.addEventListener(&apos;DOMContentLoaded&apos;, fn, false);</div><div class="line">  &#125; else &#123;</div><div class="line">    IEContentLoaded(fn);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // IE模拟DOMContentLoaded</div><div class="line">  function IEContentLoaded(fn) &#123;</div><div class="line">    var d = window.document;</div><div class="line">    var done = false;</div><div class="line"></div><div class="line">    // 只执行一次用户的回调函数init()</div><div class="line">    var init = function() &#123;</div><div class="line">      if (!done) &#123;</div><div class="line">        var done = true;</div><div class="line">        fn();</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    (function() &#123;</div><div class="line">      try &#123;</div><div class="line">        // DOM树未创建完之前调用doScroll会抛出错误</div><div class="line">        d.documentElement.doScroll(&apos;left&apos;);</div><div class="line">      &#125; catch (e) &#123;</div><div class="line">        // 延时再试一次</div><div class="line">        setTimeout(arguments.callee, 50);</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line">      // 没有错误就表示DOM树创建完毕，然后立即执行用户回调</div><div class="line">      init();</div><div class="line">    &#125;)();</div><div class="line"></div><div class="line">    // 监听document的加载状态</div><div class="line">    d.onreadystatechange = function() &#123;</div><div class="line">      // 如果用户是在documentReady之后绑定的函数，就立即执行</div><div class="line">      if (d.readyState == &apos;complete&apos;) &#123;</div><div class="line">        d.onreadystatechange = null;</div><div class="line">        init();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用<br>myReady(function(){</p>
+<p>})</p>
 
       
     </div>
@@ -592,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">DOMready</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">DOMready</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">webkit主要渲染流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">DOMready实现策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">DOMready的实现</span></a></li></ol></li></ol></div>
             
 
           </div>
